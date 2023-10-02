@@ -1,0 +1,22 @@
+class Solution {
+    public String sortSentence(String s) {
+        String[] array = s.split(" ");
+        String[] res = new String[array.length];
+
+        for (int i = 0; i < array.length; i++) {
+            int a = array[i].length() - 1;                               // Corrected the typo in "length()"
+            int b = array[i].charAt(a) - '0';
+            res[b - 1] = array[i].substring(0, a);
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (int j = 0; j < res.length; j++) {
+            sb.append(res[j]);
+            if (j < res.length - 1) {
+                sb.append(" ");
+            }
+        }
+
+        return sb.toString();
+    }
+}
