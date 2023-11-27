@@ -1,0 +1,55 @@
+public class Hash {
+    private static final int TableSize =10;
+    public static int hashFunc(String key){
+        int hash =0 ;
+        for(int i =0 ; i<key.length(); i++){
+            hash=(hash+key.charAt(i)) %  TableSize ;
+        }
+        return hash;
+    }
+
+    public static void insert(String [] hashTable, String key){
+        int index = hashFunc(key);
+        if(hashTable[index] == null){
+            hashTable[index] =key;
+        }else{
+            System.out.println("Collision occurred at index : " +index);
+        }
+    }
+
+    public static void Search (String [] hashTable, String key){
+        int index = hashFunc(key);
+        if(hashTable[index] == key){
+
+            System.out.println("KEY "+key+" found at index "+index);
+        }
+        else{
+            System.out.println( "key: "+key+"not found at index"+index);
+        }
+    }
+    public static void printhash(String []hashTable){
+        for(int i=0; i<hashTable.length; i++){
+            System.out.println("INDEX : "+ i +" VALUE : "+hashTable[i]);
+        }
+    }
+    public static void main(String[] args){
+        
+        String [] hashTable = new String [TableSize];
+        
+        insert(hashTable,"APPLE");
+        insert(hashTable,"BANANA");
+        insert(hashTable,"ORANGE");
+        insert(hashTable,"GRAPHS");
+        insert(hashTable,"PINAPPLE");
+        insert(hashTable,"ORIGANO");
+        
+        printhash(hashTable);
+        
+        
+        Search(hashTable,"ORANGE");
+        Search(hashTable,"APPLE");
+
+    }
+
+
+}
